@@ -1,8 +1,6 @@
-const express = require('express');
-const mysql = require('mysql2');
-const inquirer = require('inquirer');
-
-require('dotenv').config();
+const express = require("express");
+const mysql = require("mysql2");
+const inquirer = require("inquirer");
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -13,12 +11,14 @@ app.use(express.json());
 
 // Connect to database
 const db = mysql.createConnection(
-    process.env.HOST,
-    process.env.DB_NAME,
-    process.env.DB_USER,
-    process.env.DB_PASSWORD,
-  
-    console.log(`Connected to the employees database.`)
+  {
+    host: "localhost",
+    user: "root",
+    password: "superduper",
+    database: "employees_db",
+  },
+
+  console.log(`Connected to the employees database.`)
 );
 
 // // Create a movie
@@ -26,7 +26,7 @@ const db = mysql.createConnection(
 //   const sql = `INSERT INTO movies (movie_name)
 //     VALUES (?)`;
 //   const params = [body.movie_name];
-  
+
 //   db.query(sql, params, (err, result) => {
 //     if (err) {
 //       res.status(400).json({ error: err.message });
@@ -42,7 +42,7 @@ const db = mysql.createConnection(
 // // Read all movies
 // app.get('/api/movies', (req, res) => {
 //   const sql = `SELECT id, movie_name AS title FROM movies`;
-  
+
 //   db.query(sql, (err, rows) => {
 //     if (err) {
 //       res.status(500).json({ error: err.message });
@@ -59,7 +59,7 @@ const db = mysql.createConnection(
 // app.delete('/api/movie/:id', (req, res) => {
 //   const sql = `DELETE FROM movies WHERE id = ?`;
 //   const params = [req.params.id];
-  
+
 //   db.query(sql, params, (err, result) => {
 //     if (err) {
 //       res.statusMessage(400).json({ error: res.message });
